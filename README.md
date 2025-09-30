@@ -5,6 +5,7 @@ Classification of an [animal dataset](https://www.kaggle.com/datasets/miguelxp/a
 ## Models tried
 
 ### Big model
+I created a big model after trying smaller models before. This was the first to deliver good results.
 | Layer (type)              | Output Shape         | Param #     |
 |--------------------------|----------------------|-------------|
 | InputLayer               | (None, 128, 128, 3)  | 0           |
@@ -35,10 +36,34 @@ Total params: 17,783,050 (67.84 MB)
 | Epoch | Train Accuracy | Validation Accuracy | Train Loss | Validation Loss |
 |-------|----------------|---------------------|------------|------------------|
 | 10    | 0.4297         | 0.1825              | 1.6925       | 2.2247             |
-| 20    | 0.5078         | 0.3896              | 1.4438       | 2.4159             |
 | 30    | 0.5859         | 0.5233              | 1.2179       | 1.4879             |
-| 40    | 0.6719         | 0.5581              | 0.9784       | 1.4027             |
 | 50    | 0.6875         | 0.6773              | 0.9265       | 1.1082             |
-| 60    | 0.7578         | 0.7453              | 0.8035       | 0.7974             |
 | 70    | 0.7812         | 0.7505              | 0.6469       | 0.7938             |
-| 80    | 0.         | 0.0              | 0.0       | 0.0             |
+| 90    | 0.9297         | 0.8030              | 0.2579       | 0.6533             |
+| 110   | 0.8984         | 0.8193              | 0.4315       | 0.6422             |
+
+### Oversampling
+This model is the same as the one before, but taking into account the number of images of each class.
+
+Unluckily it didn´t got any real gain.
+
+### Transfer learning
+After only achieving a 84% accuracy in test, we tried aplying transfer learning, using VGG and the Imagenet weights, and freezing most of their layers, excluding the last convolutional block.
+
+The learning rate was much smaller (1e-4), for it to work properly.
+
+| Layer (type)              | Output Shape         | Param #     |
+|--------------------------|----------------------|-------------|
+| vgg16 (Functional)       | (None, 7, 7, 512)     | 14,714,688  |
+| Flatten                  | (None, 25088)         | 0           |
+| Dense                    | (None, 512)           | 12,845,568  |
+| Dense_1                  | (None, 256)           | 131,328     |
+| Dropout                  | (None, 256)           | 0           |
+| Dense_2                  | (None, 128)           | 32,896      |
+| Dense_3                  | (None, 10)            | 1,290       |
+Total params: 27,725,770 (105.77 MB)
+#### Metrics
+| Epoch | Train Accuracy | Validation Accuracy | Train Loss | Validation Loss |
+|-------|----------------|---------------------|------------|------------------|
+| 10    | 0.9457         | 0.9178              | 0.1566     | 0.2671           |
+| 20    | 0.9660         | 0.9433              | 0.1017     | 0.1941           |
