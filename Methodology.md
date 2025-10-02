@@ -41,6 +41,8 @@ Finally, dense layers with Dropout were added to combine features and attempt to
 The same model was tested with class balancing techniques through oversampling, adjusting the impact of the loss function depending on the number of samples per class.  
 - **Result:** no significant improvements compared to the base model.  
 
+![Last training results](images/LastMetrics.png)  
+*Results from the last 20 epochs; next time, we'll save all training sessions*
 ---
 
 ### Transfer Learning (VGG16 + ImageNet)  
@@ -54,6 +56,9 @@ For VGG, the images had to be preprocessed according to the model’s requiremen
 - Validation accuracy of **94.3%** after 20 epochs.  
 - With fine-tuning and a smaller learning rate, it reached **95.7%**.  
 - Better generalization and shorter training time compared to the model from scratch.  
+
+![Transfer learning Metrics](images/TFMetrics.png)
+
 
 ---
 

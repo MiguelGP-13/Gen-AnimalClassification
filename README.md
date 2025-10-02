@@ -1,5 +1,7 @@
 # Gen-AnimalClassification
-Classification of an [animal dataset](https://www.kaggle.com/datasets/miguelxp/animalprediction) for a Kaggle competition
+Classification of an [animal dataset](https://www.kaggle.com/datasets/miguelxp/animalprediction) for a Kaggle competition.
+
+This is the [best model](https://huggingface.co/MiguelGP-13/AnimalClassifier)
 
 ## Analysis
 We had to classify an animal dataset with 10 classes. The first step was to analyze the number of classes, the number of samples in each class, and their shapes.
